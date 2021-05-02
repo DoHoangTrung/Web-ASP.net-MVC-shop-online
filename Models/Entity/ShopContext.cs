@@ -86,10 +86,6 @@ namespace Hoc_ASP.NET_MVC.Models.Entity
                 .Property(e => e.img2)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Product>()
-                .Property(e => e.img3)
-                .IsUnicode(false);
-
             modelBuilder.Entity<ProductType>()
                 .Property(e => e.name)
                 .IsUnicode(false);

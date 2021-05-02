@@ -28,9 +28,6 @@ namespace Hoc_ASP.NET_MVC.Models.Entity
         [StringLength(100)]
         public string img2 { get; set; }
 
-        [StringLength(100)]
-        public string img3 { get; set; }
-
         public virtual ProductType ProductType { get; set; }
     }
 }

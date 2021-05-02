@@ -16,6 +16,7 @@ namespace Hoc_ASP.NET_MVC.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ActionName ("LoginAction")]
         public ActionResult LoginAction(Account user)
         {
             AccountDAO dao = new AccountDAO();
