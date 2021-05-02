@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Hoc_ASP.NET_MVC.Models.Entity.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductType.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.supplier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.img0)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.img1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.img2)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductType.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.supplier)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.img0)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.img1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.img2)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
