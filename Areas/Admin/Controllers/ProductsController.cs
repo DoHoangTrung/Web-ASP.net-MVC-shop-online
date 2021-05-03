@@ -84,17 +84,26 @@ namespace Hoc_ASP.NET_MVC.Areas.Admin.Controllers
         // GET: Admin/Products/Edit/5
         public ActionResult Edit(int id)
         {
+            ProductTypeDAO typeDAO = new ProductTypeDAO();
+            ProductDAO proDAO = new ProductDAO();
+
+            Product product = proDAO.GetProductByID(id);
+            Session["product"] = product;
+
+            var types = typeDAO.GetSelectLists(product.productTypeId.GetValueOrDefault());
+            Session["types"] = types;
+
             return View();
         }
 
         // POST: Admin/Products/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Product product)
         {
             try
             {
-                // TODO: Add update logic here
-
+                ProductDAO dao = new ProductDAO();
+                dao.Update(product);
                 return RedirectToAction("Index");
             }
             catch
