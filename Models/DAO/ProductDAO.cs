@@ -22,12 +22,12 @@ namespace Hoc_ASP.NET_MVC.Models.DAO
         public List<Product> GetProductsByType(int idType)
         {
             var products = (from p in db.Products
-                           where p.productTypeId == idType
-                           select p).ToList();
+                            where p.productTypeId == idType
+                            select p).ToList();
             return products;
         }
 
-        public int Insert (Product p)
+        public int Insert(Product p)
         {
             if (p != null)
             {
@@ -66,6 +66,16 @@ namespace Hoc_ASP.NET_MVC.Models.DAO
                     p.img2 = pUpdate.img2;
                 }
                 p.supplier = pUpdate.supplier;
+                db.SaveChanges();
+            }
+        }
+
+        public void Delete(Product pDel)
+        {
+            if (pDel != null)
+            {
+                Product p = db.Products.Find(pDel.id);
+                db.Products.Remove(p);
                 db.SaveChanges();
             }
         }

@@ -115,17 +115,19 @@ namespace Hoc_ASP.NET_MVC.Areas.Admin.Controllers
         // GET: Admin/Products/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            ProductDAO dao = new ProductDAO();
+            Product p = dao.GetProductByID(id);
+            return View(p);
         }
 
         // POST: Admin/Products/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Product pDel)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                ProductDAO dao = new ProductDAO();
+                dao.Delete(pDel);
                 return RedirectToAction("Index");
             }
             catch
