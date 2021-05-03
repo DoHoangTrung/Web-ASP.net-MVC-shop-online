@@ -51,14 +51,14 @@
                 @Html.DisplayFor(modelItem => item.supplier)
             </td>
             <td>
-                <img src="@Url.Content("~/ShopIMG/"+item.ProductType.name+"/" +item.img0)" alt="Image" class="img-thumbnail"/>
+                <img src="@Url.Content("~/ShopIMG/"+item.ProductType.name+"/" +item.img0)" alt="Image" class="image-products"/>
                 @*@Html.DisplayFor(modelItem => item.img0)*@
             </td>
             <td>
-                <img src="@Url.Content("~/ShopIMG/"+item.ProductType.name+"/" +item.img0)" alt="Image" class="img-thumbnail" />
+                <img src="@Url.Content("~/ShopIMG/"+item.ProductType.name+"/" +item.img1)" alt="Image" class="image-products" />
             </td>
             <td>
-                <img src="@Url.Content("~/ShopIMG/"+item.ProductType.name+"/" +item.img0)" alt="Image" class="img-thumbnail" />
+                <img src="@Url.Content("~/ShopIMG/"+item.ProductType.name+"/" +item.img2)" alt="Image" class="image-products" />
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.id }) |

@@ -58,17 +58,21 @@ namespace Hoc_ASP.NET_MVC.Areas.Admin.Controllers
         // GET: Admin/Products/Create
         public ActionResult Create()
         {
+            ProductTypeDAO typeDAO = new ProductTypeDAO();
+            var types = typeDAO.GetSelectLists();
+            Session["types"] = types;
             return View();
         }
 
         // POST: Admin/Products/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Product pro)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                ProductDAO dao = new ProductDAO();
+                int id=dao.Insert(pro);
+                
                 return RedirectToAction("Index");
             }
             catch
