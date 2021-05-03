@@ -5,10 +5,10 @@ using System.Linq;
 
 namespace Hoc_ASP.NET_MVC.Models.Entity
 {
-    public partial class Context : DbContext
+    public partial class ShopContext : DbContext
     {
-        public Context()
-            : base("name=Context")
+        public ShopContext()
+            : base("name=ShopContext")
         {
         }
 
@@ -69,10 +69,6 @@ namespace Hoc_ASP.NET_MVC.Models.Entity
             modelBuilder.Entity<Product>()
                 .Property(e => e.name)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Product>()
-                .Property(e => e.price)
-                .HasPrecision(18, 0);
 
             modelBuilder.Entity<Product>()
                 .Property(e => e.supplier)

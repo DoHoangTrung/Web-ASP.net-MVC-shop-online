@@ -12,12 +12,12 @@ namespace Hoc_ASP.NET_MVC.Areas.Admin
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Index",controller = "Products" ,id = UrlParameter.Optional }
             );
         }
     }

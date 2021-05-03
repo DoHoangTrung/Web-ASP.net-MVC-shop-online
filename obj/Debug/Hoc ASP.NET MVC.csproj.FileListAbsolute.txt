@@ -72,12 +72,8 @@ C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\bin\System.Web.WebPages.Razor.xm
 C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\bin\Newtonsoft.Json.xml
 C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\bin\Antlr3.Runtime.pdb
 C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\obj\Debug\Hoc ASP_NET MVC.csprojAssemblyReference.cache
-C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\obj\Debug\Hoc ASP_NET MVC.csproj.CoreCompileInputs.cache
-C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\obj\Debug\Hoc ASP_NET MVC.csproj.CopyComplete
+C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\obj\Debug\Hoc ASP.NET MVC.csprojAssemblyReference.cache
+C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\obj\Debug\Hoc ASP.NET MVC.csproj.CoreCompileInputs.cache
+C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\obj\Debug\Hoc ASP.NET MVC.csproj.CopyComplete
 C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\obj\Debug\Hoc ASP.NET MVC.dll
 C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\obj\Debug\Hoc ASP.NET MVC.pdb
-C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\bin\EntityFramework.dll
-C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\bin\EntityFramework.SqlServer.dll
-C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\bin\EntityFramework.xml
-C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\bin\EntityFramework.SqlServer.xml

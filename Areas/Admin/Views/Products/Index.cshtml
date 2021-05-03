@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Hoc_ASP.NET_MVC.Models.Entity.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<form action="/" method="post">
+    @Html.DropDownList("ddlTypes", ViewBag.productTypes as SelectList, "Chọn loại sản phẩm")
+    <input type="submit" name="" value="Hiển thị" />
+</form>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table" id="tableProduct">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductType.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.supplier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.img0)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.img1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.img2)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductType.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.supplier)
+            </td>
+            <td>
+                <img src="@Url.Content("~/ShopIMG/"+item.ProductType.name+"/" +item.img0)" alt="Image" class="image-products"/>
+                @*@Html.DisplayFor(modelItem => item.img0)*@
+            </td>
+            <td>
+                <img src="@Url.Content("~/ShopIMG/"+item.ProductType.name+"/" +item.img1)" alt="Image" class="image-products" />
+            </td>
+            <td>
+                <img src="@Url.Content("~/ShopIMG/"+item.ProductType.name+"/" +item.img2)" alt="Image" class="image-products" />
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
