@@ -129,9 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -141,12 +139,12 @@
     <Compile Include="Models\DAO\ProductTypeDAO.cs" />
     <Compile Include="Models\Entity\Account.cs" />
     <Compile Include="Models\Entity\AccountType.cs" />
+    <Compile Include="Models\Entity\Context.cs" />
     <Compile Include="Models\Entity\Customer.cs" />
     <Compile Include="Models\Entity\OrderStatu.cs" />
     <Compile Include="Models\Entity\Payment.cs" />
     <Compile Include="Models\Entity\Product.cs" />
     <Compile Include="Models\Entity\ProductType.cs" />
-    <Compile Include="Models\Entity\ShopContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1843,9 +1841,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Assets\Admin\scss\navs\_global.scss" />
     <Content Include="Assets\Admin\scss\navs\_sidebar.scss" />
     <Content Include="Assets\Admin\scss\navs\_topbar.scss" />
@@ -2018,11 +2013,8 @@
     <Content Include="Assets\Admin\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Assets\Admin\vendor\jquery\jquery.min.map" />
     <Content Include="Assets\Admin\vendor\jquery\jquery.slim.min.map" />
-    <Content Include="Areas\Admin\Views\User\Login.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_LayoutIndex.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2065,6 +2057,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Products\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Models\DAT\" />
   </ItemGroup>
   <ItemGroup>

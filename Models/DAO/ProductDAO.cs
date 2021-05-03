@@ -8,10 +8,10 @@ namespace Hoc_ASP.NET_MVC.Models.DAO
 {
     public class ProductDAO
     {
-        private ShopContext db;
+        private Context db;
         public ProductDAO()
         {
-            db = new ShopContext();
+            db = new Context();
         }
         public List<Product> GetProducts()
         {

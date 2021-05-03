@@ -14,6 +14,10 @@ namespace Hoc_ASP.NET_MVC.Models.Entity
         [StringLength(100)]
         public string name { get; set; }
 
+        public int? quantity { get; set; }
+
+        public decimal? price { get; set; }
+
         [StringLength(200)]
         public string supplier { get; set; }
 

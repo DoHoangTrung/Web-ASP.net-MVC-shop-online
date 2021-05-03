@@ -9,10 +9,10 @@ namespace Hoc_ASP.NET_MVC.Models.DAO
 {
     public class ProductTypeDAO
     {
-        private ShopContext db;
+        private Context db;
         public ProductTypeDAO()
         {
-            db = new ShopContext();
+            db = new Context();
         }
 
         public List<ProductType> GetProductTypes()

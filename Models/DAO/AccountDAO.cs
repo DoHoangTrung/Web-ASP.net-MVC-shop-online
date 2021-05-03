@@ -8,11 +8,11 @@ namespace Hoc_ASP.NET_MVC.Models.DAO
 {
     public class AccountDAO
     {
-        private ShopContext db;
+        private Context db;
 
         public AccountDAO()
         {
-            db = new ShopContext();
+            db = new Context();
         }
         public bool Login(Account user)
         {
