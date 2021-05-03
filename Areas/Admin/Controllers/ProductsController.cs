@@ -2,6 +2,7 @@
 using Hoc_ASP.NET_MVC.Models.Entity;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,9 +14,39 @@ namespace Hoc_ASP.NET_MVC.Areas.Admin.Controllers
         // GET: Admin/Products
         public ActionResult Index()
         {
-            ProductDAO dao = new ProductDAO();
-            IEnumerable<Product> products = dao.GetProducts();
+            ProductTypeDAO typeDao = new ProductTypeDAO();
+            var productTypes = typeDao.GetSelectLists();
+            ViewBag.productTypes = productTypes;
+
+            ProductDAO proDao = new ProductDAO();
+            var products = proDao.GetProducts();
+
             return View(products);
+        }
+
+        [HttpPost]
+        public ActionResult Index(FormCollection form)
+        {
+            ProductTypeDAO typeDao = new ProductTypeDAO();
+            var productTypes = typeDao.GetSelectLists();
+            ViewBag.productTypes = productTypes;
+
+            int typeID;
+            bool check = int.TryParse(form["ddlTypes"], out typeID);
+            if (check)
+            {
+                ProductDAO proDao = new ProductDAO();
+                var products = proDao.GetProductsByType(typeID);
+
+                return View(products);
+            }
+            else
+            {
+                ProductDAO proDao = new ProductDAO();
+                var products = proDao.GetProducts();
+
+                return View(products);
+            }
         }
 
         // GET: Admin/Products/Details/5

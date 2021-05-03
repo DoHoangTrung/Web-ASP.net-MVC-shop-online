@@ -13,9 +13,17 @@ namespace Hoc_ASP.NET_MVC.Models.DAO
         {
             db = new ShopContext();
         }
-        public IEnumerable<Product> GetProducts()
+        public List<Product> GetProducts()
         {
-            var products = db.Products;
+            var products = db.Products.ToList();
+            return products;
+        }
+
+        public List<Product> GetProductsByType(int idType)
+        {
+            var products = (from p in db.Products
+                           where p.productTypeId == idType
+                           select p).ToList();
             return products;
         }
     }

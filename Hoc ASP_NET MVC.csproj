@@ -138,6 +138,7 @@
     </Compile>
     <Compile Include="Models\DAO\AccountDAO.cs" />
     <Compile Include="Models\DAO\ProductDAO.cs" />
+    <Compile Include="Models\DAO\ProductTypeDAO.cs" />
     <Compile Include="Models\Entity\Account.cs" />
     <Compile Include="Models\Entity\AccountType.cs" />
     <Compile Include="Models\Entity\Customer.cs" />
@@ -2019,6 +2020,7 @@
     <Content Include="Assets\Admin\vendor\jquery\jquery.slim.min.map" />
     <Content Include="Areas\Admin\Views\User\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutIndex.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2030,6 +2032,19 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="ShopIMG\ao\do0.jpg" />
+    <Content Include="ShopIMG\ao\do1.jpg" />
+    <Content Include="ShopIMG\ao\do2.jpg" />
+    <Content Include="ShopIMG\ao\trang0.jpg" />
+    <Content Include="ShopIMG\ao\trang1.jpg" />
+    <Content Include="ShopIMG\ao\trang2.jpg" />
+    <Content Include="ShopIMG\ao\vang0.jpg" />
+    <Content Include="ShopIMG\ao\vang1.jpg" />
+    <Content Include="ShopIMG\ao\vang2.jpg" />
+    <Content Include="ShopIMG\quan\quanDen2.jpg" />
+    <Content Include="ShopIMG\quan\quanXanh0.jpg" />
+    <Content Include="ShopIMG\quan\quanXanh1.jpg" />
+    <Content Include="ShopIMG\quan\quanXanh2.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2042,10 +2057,13 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="ShopIMG\quan\quanDen0.webp" />
+    <Content Include="ShopIMG\quan\quanDen1.webp" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Models\DAT\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
