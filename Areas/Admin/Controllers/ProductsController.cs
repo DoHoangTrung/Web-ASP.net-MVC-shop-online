@@ -1,5 +1,6 @@
 ﻿using Hoc_ASP.NET_MVC.Models.DAO;
 using Hoc_ASP.NET_MVC.Models.Entity;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -12,20 +13,26 @@ namespace Hoc_ASP.NET_MVC.Areas.Admin.Controllers
     public class ProductsController : Controller
     {
         // GET: Admin/Products
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pageSize = 2)
         {
+            //load product type dropdownlist
             ProductTypeDAO typeDao = new ProductTypeDAO();
             var productTypes = typeDao.GetSelectLists();
             ViewBag.productTypes = productTypes;
 
-            ProductDAO proDao = new ProductDAO();
-            var products = proDao.GetProducts();
+            //load list products
+            var products = Session["productsShowing"] as List<Product>;
+            if (products == null)
+            {
+                ProductDAO proDao = new ProductDAO();
+                products = proDao.GetProducts();
+            }
 
-            return View(products);
+            return View(products.ToPagedList(page,pageSize));
         }
 
         [HttpPost]
-        public ActionResult Index(FormCollection form)
+        public ActionResult Index(FormCollection form, int page = 1, int pageSize = 2)
         {
             ProductTypeDAO typeDao = new ProductTypeDAO();
             var productTypes = typeDao.GetSelectLists();
@@ -33,20 +40,33 @@ namespace Hoc_ASP.NET_MVC.Areas.Admin.Controllers
 
             int typeID;
             bool check = int.TryParse(form["ddlTypes"], out typeID);
+
+            ProductDAO proDao = new ProductDAO();
+
+            List<Product> productsShowing = Session["productsShowing"] as List<Product>;
+
+            List<Product> products = new List<Product>();
+
             if (check)
             {
-                ProductDAO proDao = new ProductDAO();
-                var products = proDao.GetProductsByType(typeID);
-
-                return View(products);
+                products = proDao.GetProductsByType(productsShowing,typeID);
             }
             else
             {
-                ProductDAO proDao = new ProductDAO();
-                var products = proDao.GetProducts();
-
-                return View(products);
+                products = productsShowing;
             }
+
+            return View(products.ToPagedList(page, pageSize));
+        }
+
+        [HttpPost]
+        public ActionResult Search(string textSearch)
+        {
+            ProductDAO pDao = new ProductDAO();
+            var proSearch = pDao.Search(textSearch);
+
+            Session["productsShowing"] = proSearch;
+            return RedirectToAction("Index", "Products");
         }
 
         // GET: Admin/Products/Details/5
@@ -71,9 +91,9 @@ namespace Hoc_ASP.NET_MVC.Areas.Admin.Controllers
             try
             {
                 ProductDAO dao = new ProductDAO();
-                int id=dao.Insert(pro);
-                
-                return RedirectToAction("Index");
+                int id = dao.Insert(pro);
+
+                return RedirectToAction("Index","Products");
             }
             catch
             {

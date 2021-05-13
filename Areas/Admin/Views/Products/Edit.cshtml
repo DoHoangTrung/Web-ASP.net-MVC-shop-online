@@ -30,7 +30,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.quantity, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="number" name="quantity" value=@product.quantity class="form-control" />
+                <input type="number" name="quantity" value=@product.quantity class="form-control" min="1"/>
                 @Html.ValidationMessageFor(model => model.quantity, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -38,7 +38,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.price, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="number" name="price" value=@product.price class="form-control" />
+                <input type="number" name="price" value=@product.price class="form-control" min="0"/>
                 @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
             </div>
         </div>

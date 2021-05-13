@@ -16,7 +16,7 @@ namespace Hoc_ASP.NET_MVC.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [ActionName ("LoginAction")]
+        //[ActionName ("LoginAction")]
         public ActionResult LoginAction(Account user)
         {
             AccountDAO dao = new AccountDAO();
@@ -25,8 +25,8 @@ namespace Hoc_ASP.NET_MVC.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Home");
             }
             else
-            {
                 return RedirectToAction("Login", "User");
+            {
             }
         }
     }

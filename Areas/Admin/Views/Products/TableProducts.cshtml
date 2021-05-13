@@ -1,21 +1,6 @@
 ﻿@model PagedList.IPagedList<Hoc_ASP.NET_MVC.Models.Entity.Product>
 
-@using PagedList.Mvc;
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-}
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<form action="/" method="post">
-    @Html.DropDownList("ddlTypes", ViewBag.productTypes as SelectList, "Chọn loại sản phẩm")
-    <input type="submit" name="" value="Hiển thị" />
-</form>
 <table class="table">
     <tr>
         <th>
@@ -81,14 +66,4 @@
     }
 
 </table>
-<div class="container" style="display:flex;justify-content:space-around">
-    @Html.PagedListPager(
-        Model,
-        page => Url.Action("Index", "Products", new { page }),
-        new PagedListRenderOptions()
-        {
-            UlElementClasses = new[] { "pagination" },
-            LiElementClasses = new[] { "page-item" }
-        }
-    )
-</div>
+

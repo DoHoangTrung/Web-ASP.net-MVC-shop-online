@@ -1,7 +1,10 @@
 ﻿using Hoc_ASP.NET_MVC.Models.Entity;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace Hoc_ASP.NET_MVC.Models.DAO
@@ -25,6 +28,15 @@ namespace Hoc_ASP.NET_MVC.Models.DAO
                             where p.productTypeId == idType
                             select p).ToList();
             return products;
+        }
+
+        public List<Product> GetProductsByType(List<Product> products,int idType)
+        {
+            var result = products.Where((p) =>
+            {
+                return p.productTypeId == idType;
+            }).Select(p => p).ToList();
+            return result;
         }
 
         public int Insert(Product p)
@@ -78,6 +90,50 @@ namespace Hoc_ASP.NET_MVC.Models.DAO
                 db.Products.Remove(p);
                 db.SaveChanges();
             }
+        }
+
+        string Format(string text)
+        {
+            // trim;
+            text = text.Trim();
+            //remove duplicate space in text
+            text = Regex.Replace(text, @"\s\s+"," ");
+
+            text = text.ToLower();
+
+            // remove accent
+            StringBuilder result = new StringBuilder();
+            var arrayText = text.ToLower().Normalize(NormalizationForm.FormD).ToCharArray();
+            foreach (char c in arrayText)
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                {
+                    result.Append(c);
+                }
+            }
+
+            return result.ToString().Normalize(NormalizationForm.FormC);
+        }
+        public List<Product> Search(string textSearch)
+        {
+            var products = db.Products.ToList();
+
+            products = products.Where((p) =>
+            {
+                string s, keyWords;
+                s = p.name + " " + p.ProductType.name + " " + p.supplier;
+                keyWords = textSearch;
+
+                s = Format(s);
+                keyWords = Format(keyWords);
+
+                if (s.Contains(keyWords))
+                    return true;
+                else
+                    return false;
+            }).Select(p => p).ToList();
+
+            return products;
         }
     }
 }

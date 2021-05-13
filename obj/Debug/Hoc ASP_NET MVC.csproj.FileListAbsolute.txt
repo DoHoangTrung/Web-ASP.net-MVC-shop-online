@@ -81,3 +81,7 @@ C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\bin\EntityFramework.dll
 C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\bin\EntityFramework.SqlServer.dll
 C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\bin\EntityFramework.xml
 C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\bin\EntityFramework.SqlServer.xml
+C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\bin\PagedList.dll
+C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\bin\PagedList.Mvc.dll
+C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\bin\PagedList.xml
+C:\Users\Trung Do Hoang\Desktop\Hoc ASP.NET MVC\bin\PagedList.Mvc.xml
