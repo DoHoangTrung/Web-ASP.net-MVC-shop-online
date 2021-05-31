@@ -1,4 +1,5 @@
-﻿using Hoc_ASP.NET_MVC.Models.DAO;
+﻿using Hoc_ASP.NET_MVC.Models.Code;
+using Hoc_ASP.NET_MVC.Models.DAO;
 using Hoc_ASP.NET_MVC.Models.Entity;
 using System;
 using System.Collections.Generic;
@@ -22,11 +23,12 @@ namespace Hoc_ASP.NET_MVC.Areas.Admin.Controllers
             AccountDAO dao = new AccountDAO();
             if (dao.Login(user))
             {
-                return RedirectToAction("Index", "Home");
+                SessionHelper.SetSesstionLogin(new UserSession() { UserName = user.nameLogin });
+                return RedirectToAction("Index", "Products");
             }
             else
-                return RedirectToAction("Login", "User");
             {
+                return RedirectToAction("Login", "User");
             }
         }
     }

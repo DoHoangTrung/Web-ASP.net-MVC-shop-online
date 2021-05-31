@@ -7,14 +7,25 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2></h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<form action="/" method="post">
-    @Html.DropDownList("ddlTypes", ViewBag.productTypes as SelectList, "Chọn loại sản phẩm")
-    <input type="submit" name="" value="Hiển thị" />
+<form action="@Url.Action("Show","Products")" method="post">
+    @Html.DropDownList("ddlType", ViewBag.productTypes as SelectList, "Chọn loại sản phẩm")
+    @Html.DropDownList("ddlPrice", new List<SelectListItem>
+    {
+        new SelectListItem{Text = "Dưới 500 nghìn",Value ="1"},
+        new SelectListItem{Text = "500 - 1 triệu",Value ="2"},
+        new SelectListItem{Text = "1tr - 1.5 triệu",Value ="3"},
+        new SelectListItem{Text = "1,5 - 2 triệu",Value ="4"},
+        new SelectListItem{Text = "Trên 2 triệu",Value ="5"},
+    }, "Tìm kiếm theo giá")
+    <input id="textSearch" type="text" name="textSearch" placeholder="Search for..."/>
+    <button class="btn btn-primary">
+        <i class="fas fa-search fa-sm"></i>
+    </button>
 </form>
 <table class="table">
     <tr>

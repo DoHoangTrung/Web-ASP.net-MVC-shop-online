@@ -1,4 +1,5 @@
-﻿using Hoc_ASP.NET_MVC.Models.Entity;
+﻿using Hoc_ASP.NET_MVC.Models.Code;
+using Hoc_ASP.NET_MVC.Models.Entity;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -134,6 +135,42 @@ namespace Hoc_ASP.NET_MVC.Models.DAO
             }).Select(p => p).ToList();
 
             return products;
+        }
+
+        public List<Product> Search(SearchModel searchModel)
+        {
+            List<Product> products = db.Products.ToList();
+            if (!string.IsNullOrEmpty(searchModel.keyWords))
+            {
+                products = products.Where((p) =>
+                {
+                    string keyWords = searchModel.keyWords.Format();
+                    string str = (p.name + p.ProductType.name).Format();
+                    return str.Contains(keyWords);
+                }).Select(p=>p).ToList();
+            }
+
+            int? fromNumber, toNumber;
+            fromNumber = searchModel.fromNumber;
+            toNumber = searchModel.toNumber;
+            if (toNumber != null && fromNumber!= null)
+            {
+                products = products.Where((p) =>
+                {
+                    if (fromNumber < p.price && p.price <= toNumber)
+                        return true;
+                    else
+                        return false;
+                }).Select(p => p).ToList();
+            }
+
+            int? typeID = searchModel.typeId;
+            if(typeID!= null)
+            {
+                products = products.Where(p => p.productTypeId == typeID).Select(p => p).ToList();
+            }
+
+            return products.OrderBy(p => p.name).ToList();
         }
     }
 }

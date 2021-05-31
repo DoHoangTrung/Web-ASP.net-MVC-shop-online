@@ -19,32 +19,31 @@
         @Html.HiddenFor(model => model.id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.name, "Tên sản phẩm", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.TextBoxFor(model => model.name, new { @Value = "ba" }.ToString(), new { htmlAttributes = new { @class = "form-control" } })*@
                 <input type="text" name="name" value=@product.name class="form-control" />
                 @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.quantity, "Số lượng ", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="number" name="quantity" value=@product.quantity class="form-control" min="1"/>
+                <input type="number" name="quantity" value=@product.quantity class="form-control" min="1" />
                 @Html.ValidationMessageFor(model => model.quantity, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.price, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.price, "Giá", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="number" name="price" value=@product.price class="form-control" min="0"/>
+                <input type="number" name="price" value=@product.price class="form-control" min="0" />
                 @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.supplier, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.supplier, "Nhà cung cấp", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <input type="text" name="supplier" value=@product.supplier class="form-control" />
                 @Html.ValidationMessageFor(model => model.supplier, "", new { @class = "text-danger" })
@@ -52,40 +51,49 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.productTypeId, "productTypeId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.productTypeId, "Loại sản phẩm", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("productTypeId", Session["types"] as SelectList, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.productTypeId, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.img0, htmlAttributes: new { @class = "control-label col-md-2" })
+        @*____________ádfádfádlfkjáldkfjákldjflkặẻoiquưoeỉuióadfjkláhdgkládlkfjádfjklj*@
+
+        <div class="form-group " id="groupImg0">
+            @Html.LabelFor(model => model.img0, "Ảnh chính", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <img src="@Url.Content("~/ShopIMG/"+product.ProductType.name+"/" +product.img0)" alt="Image" class="image-products" />
-                <input type="file" name="img0" value=@product.img0 class="form-control" />
+                <input id="fileImg0" type="file" name="img0" value=@product.img0 class="" onchange="loadFile(event)"/>
+                <img id="img0Update" src="#" alt="Alternate Text" class="image-products" />
                 @Html.ValidationMessageFor(model => model.img0, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.img1, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.img1, "Ảnh phụ 1", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <img src="@Url.Content("~/ShopIMG/"+product.ProductType.name+"/" +product.img1)" alt="Image" class="image-products" />
                 <input type="file" name="img1" value=@product.img0 class="form-control" />
+                <img src="#" alt="Image" />
                 @Html.ValidationMessageFor(model => model.img1, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.img2, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.img2, "Ảnh phụ 2", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <img src="@Url.Content("~/ShopIMG/"+product.ProductType.name+"/" +product.img2)" alt="Image" class="image-products" />
                 <input type="file" name="img2" value=@product.img0 class="form-control" />
                 @Html.ValidationMessageFor(model => model.img2, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <div class="form-group">
+            @Html.LabelFor(model => model.textInfo, "Mô tả sản phẩm:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <textarea name="textInfo" cols="90" rows="4">@product.textInfo</textarea>
+            </div>
+        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
@@ -97,3 +105,29 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@*show image after chosen file*@
+
+
+@*---------------------------------------*@
+<script>
+    $(document).ready(function () {
+        function readUrl(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.readAsDataURL(input.files[0]);
+                reader.onload = function (e) {
+                    $('#img0Update').attr('src', e.target.result);
+                }
+                
+            }
+        }
+        $("#fileImg0").change(function ()){
+            readUrl(this)
+        }
+
+        var loadFile = function (event) {
+            var img0 = $
+        }
+    })
+</script>

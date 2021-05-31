@@ -1,4 +1,5 @@
-﻿using Hoc_ASP.NET_MVC.Models.DAO;
+﻿using Hoc_ASP.NET_MVC.Models.Code;
+using Hoc_ASP.NET_MVC.Models.DAO;
 using Hoc_ASP.NET_MVC.Models.Entity;
 using PagedList;
 using System;
@@ -13,60 +14,93 @@ namespace Hoc_ASP.NET_MVC.Areas.Admin.Controllers
     public class ProductsController : Controller
     {
         // GET: Admin/Products
-        public ActionResult Index(int page = 1, int pageSize = 2)
+
+        public ActionResult Index(int page = 1, int pageSize = 5)
         {
-            //load product type dropdownlist
-            ProductTypeDAO typeDao = new ProductTypeDAO();
-            var productTypes = typeDao.GetSelectLists();
-            ViewBag.productTypes = productTypes;
-
-            //load list products
-            var products = Session["productsShowing"] as List<Product>;
-            if (products == null)
+            var sessionLogin = SessionHelper.GetSessionLogin();
+            if(sessionLogin == null)//ERROR: !=
             {
-                ProductDAO proDao = new ProductDAO();
-                products = proDao.GetProducts();
-            }
+                //load product type dropdownlist
+                ProductTypeDAO typeDao = new ProductTypeDAO();
+                var productTypes = typeDao.GetSelectLists();
+                ViewBag.productTypes = productTypes;
 
-            return View(products.ToPagedList(page,pageSize));
-        }
+                //load list products
+                var products = Session["productsShowing"] as List<Product>;
+                if (products == null)
+                {
+                    ProductDAO proDao = new ProductDAO();
+                    products = proDao.GetProducts();
+                }
 
-        [HttpPost]
-        public ActionResult Index(FormCollection form, int page = 1, int pageSize = 2)
-        {
-            ProductTypeDAO typeDao = new ProductTypeDAO();
-            var productTypes = typeDao.GetSelectLists();
-            ViewBag.productTypes = productTypes;
-
-            int typeID;
-            bool check = int.TryParse(form["ddlTypes"], out typeID);
-
-            ProductDAO proDao = new ProductDAO();
-
-            List<Product> productsShowing = Session["productsShowing"] as List<Product>;
-
-            List<Product> products = new List<Product>();
-
-            if (check)
-            {
-                products = proDao.GetProductsByType(productsShowing,typeID);
+                return View(products.ToPagedList(page, pageSize));
             }
             else
             {
-                products = productsShowing;
+                return RedirectToAction("Login", "User");
             }
-
-            return View(products.ToPagedList(page, pageSize));
         }
 
         [HttpPost]
-        public ActionResult Search(string textSearch)
+        public ActionResult Show(FormCollection form, int page = 1, int pageSize = 5)
         {
-            ProductDAO pDao = new ProductDAO();
-            var proSearch = pDao.Search(textSearch);
+            ProductTypeDAO typeDao = new ProductTypeDAO();
+            var productTypes = typeDao.GetSelectLists();
+            ViewBag.productTypes = productTypes;
 
-            Session["productsShowing"] = proSearch;
-            return RedirectToAction("Index", "Products");
+            //create search by multiple condition
+            SearchModel searchModel = new SearchModel();
+
+            //typeID condition
+            bool check = int.TryParse(form["ddlType"], out int typeID);
+
+            //Response.Write("<script>alert('"+check.ToString()+"');</script>");
+
+            if (check)
+            {
+                searchModel.typeId = typeID;
+            }
+
+            //key words condition
+            string keyWords = form["textSearch"].Trim();
+            if (!string.IsNullOrEmpty(keyWords))
+            {
+                searchModel.keyWords = keyWords;
+            }
+
+            //prices condition
+            string indexPrice = form["ddlPrice"];
+            switch (indexPrice)
+            {
+                case "1":
+                    searchModel.fromNumber = 0;
+                    searchModel.toNumber = 500000;
+                    break;
+                case "2":
+                    searchModel.fromNumber = 500000;
+                    searchModel.toNumber = 1000000;
+                    break;
+                case "3":
+                    searchModel.fromNumber = 1000000;
+                    searchModel.toNumber = 1500000;
+                    break;
+                case "4":
+                    searchModel.fromNumber = 1500000;
+                    searchModel.toNumber = 200000;
+                    break;
+                case "5":
+                    searchModel.fromNumber = 200000;
+                    searchModel.toNumber = 200000000;
+                    break;
+                default:
+                    break;
+            }
+
+            //search
+            ProductDAO pDao = new ProductDAO();
+            var searchResult = pDao.Search(searchModel);
+
+            return View( "~/Areas/Admin/Views/Products/Index.cshtml",searchResult.ToPagedList(page, pageSize));
         }
 
         // GET: Admin/Products/Details/5
